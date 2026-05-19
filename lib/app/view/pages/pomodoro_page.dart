@@ -18,7 +18,11 @@ class PomodoroPage extends StatelessWidget {
                 subtitulo: "Pomodoro Clássico",
               ),
               SizedBox(height: 16),
-              TimerWidget(initialMinutes: 25),
+              TimerWidget(
+                initialMinutes: 25,
+                pausedMinutes: 5,
+                maximumCycles: 4,
+              ),
             ],
           ),
         ),

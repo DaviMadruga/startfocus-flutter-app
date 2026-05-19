@@ -2,8 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class TimerViewModel extends ChangeNotifier {
-  final int maxCycles = 4;
-  final int breakMinutes = 5;
+  int maxCycles = 4;
+  int breakMinutes = 5;
 
   bool isPlaying = false;
   bool isPaused = false;
@@ -19,10 +19,27 @@ class TimerViewModel extends ChangeNotifier {
 
   int _focusMinutes = 0;
 
-  void startTimer(int initialMinutes) {
-    if (timer != null) return;
+  void configure({
+    required int focusMinutes,
+    required int pausedMinutes,
+    required int maximumCycles,
+  }) {
+    final shouldNotify =
+        _focusMinutes != focusMinutes ||
+        breakMinutes != pausedMinutes ||
+        maxCycles != maximumCycles;
 
-    _focusMinutes = initialMinutes;
+    _focusMinutes = focusMinutes;
+    breakMinutes = pausedMinutes;
+    maxCycles = maximumCycles;
+
+    if (shouldNotify) {
+      notifyListeners();
+    }
+  }
+
+  void startTimer() {
+    if (timer != null) return;
 
     if (!isPaused) {
       if (completedCycles >= maxCycles) {
@@ -43,10 +60,8 @@ class TimerViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void resumeTimer(int initialMinutes) {
+  void resumeTimer() {
     if (timer != null) return;
-
-    _focusMinutes = initialMinutes;
     _startCurrentPhase();
   }
 
@@ -58,8 +73,7 @@ class TimerViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void restarTime(int initialMinutes, ValueNotifier<bool> isPausedNotifier) {
-    _focusMinutes = initialMinutes;
+  void restarTime(ValueNotifier<bool> isPausedNotifier) {
     timer?.cancel();
     timer = null;
     duration = Duration.zero;

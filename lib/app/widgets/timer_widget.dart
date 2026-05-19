@@ -5,9 +5,15 @@ import 'package:startfocus/app/view_model/timer_view_model.dart';
 
 class TimerWidget extends StatefulWidget {
   final int initialMinutes;
-  
+  final int pausedMinutes;
+  final int maximumCycles;
 
-  const TimerWidget({super.key, required this.initialMinutes});
+  const TimerWidget({
+    super.key,
+    required this.initialMinutes,
+    required this.pausedMinutes,
+    required this.maximumCycles,
+  });
 
   @override
   State<TimerWidget> createState() => _TimerWidgetState();
@@ -20,12 +26,33 @@ class _TimerWidgetState extends State<TimerWidget> {
   @override
   void initState() {
     super.initState();
+    _configureTimer();
+  }
+
+  @override
+  void didUpdateWidget(covariant TimerWidget oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    if (oldWidget.initialMinutes != widget.initialMinutes ||
+        oldWidget.pausedMinutes != widget.pausedMinutes ||
+        oldWidget.maximumCycles != widget.maximumCycles) {
+      _configureTimer();
+    }
   }
 
   @override
   void dispose() {
     super.dispose();
     timerViewModel.stopTime();
+    isPausedNotifier.dispose();
+  }
+
+  void _configureTimer() {
+    timerViewModel.configure(
+      focusMinutes: widget.initialMinutes,
+      pausedMinutes: widget.pausedMinutes,
+      maximumCycles: widget.maximumCycles,
+    );
   }
 
   @override
@@ -76,9 +103,9 @@ class _TimerWidgetState extends State<TimerWidget> {
                   if (timerViewModel.isPlaying) {
                     timerViewModel.pauseTimer();
                   } else if (timerViewModel.isPaused) {
-                    timerViewModel.resumeTimer(widget.initialMinutes);
+                    timerViewModel.resumeTimer();
                   } else {
-                    timerViewModel.startTimer(widget.initialMinutes);
+                    timerViewModel.startTimer();
                   }
                 },
                 style: ElevatedButton.styleFrom(
@@ -126,13 +153,9 @@ class _TimerWidgetState extends State<TimerWidget> {
             ListenableBuilder(
               listenable: timerViewModel,
               builder: (context, child) {
-                bool isPlaying = timerViewModel.isPlaying;
                 return ElevatedButton(
                   onPressed: () {
-                    timerViewModel.restarTime(
-                      widget.initialMinutes,
-                      isPausedNotifier,
-                    );
+                    timerViewModel.restarTime(isPausedNotifier);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.fundoCard,
@@ -221,7 +244,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "${nextPhaseMinutes} min",
+                          "$nextPhaseMinutes min",
                           style: AppTextStyle.titulo,
                         ),
                         SizedBox(height: 4),

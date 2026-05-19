@@ -18,7 +18,11 @@ class ProdutivistaPage extends StatelessWidget {
                 subtitulo: "Regra 52/17",
               ),
               SizedBox(height: 16),
-              TimerWidget(initialMinutes: 52),
+              TimerWidget(
+                initialMinutes: 52,
+                pausedMinutes: 17,
+                maximumCycles: 3,
+              ),
             ],
           ),
         ),
