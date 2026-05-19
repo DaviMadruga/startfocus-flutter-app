@@ -159,9 +159,10 @@ class _TimerWidgetState extends State<TimerWidget> {
             ListenableBuilder(
               listenable: timerViewModel,
               builder: (context, child) {
-                bool isPlaying = timerViewModel.isPlaying;
                 return ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    timerViewModel.skipCycle(isPausedNotifier);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.fundoCard,
                     foregroundColor: AppColors.textoPrincipal,
@@ -195,46 +196,70 @@ class _TimerWidgetState extends State<TimerWidget> {
             color: AppColors.fundoCard,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: IntrinsicHeight(
-            child: Row(
-              children: [
-                Icon(
-                  Icons.coffee_outlined,
-                  size: 48,
-                  color: AppColors.detalheVerdeEletrico,
-                ),
-                SizedBox(width: 8),
-                Column(
+          child: ListenableBuilder(
+            listenable: timerViewModel,
+            builder: (context, child) {
+              final currentPhaseMinutes = timerViewModel.currentPhaseMinutes;
+              final nextPhaseMinutes = timerViewModel.nextPhaseMinutes;
+
+              return IntrinsicHeight(
+                child: Row(
                   children: [
-                    Text("Próxima pausa", style: AppTextStyle.subTitulo),
-                    SizedBox(height: 4),
-                    Text("5 min", style: AppTextStyle.titulo),
-                    SizedBox(height: 4),
-                    Text("Pausa curta", style: AppTextStyle.subTitulo),
-                  ],
-                ),
-                SizedBox(width: 8),
-                VerticalDivider(
-                  color: AppColors.detalheCinzaAzulado,
-                  thickness: 2,
-                ),
-                SizedBox(width: 8),
-                Column(
-                  children: [
-                    Text("Foco restante:", style: AppTextStyle.subTitulo),
-                    SizedBox(height: 4),
-                    Text(
-                      "25:00",
-                      style: TextStyle(
-                        color: AppColors.detalheVerdeEletrico,
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    Icon(
+                      timerViewModel.isBreakTime
+                          ? Icons.self_improvement_outlined
+                          : Icons.coffee_outlined,
+                      size: 48,
+                      color: AppColors.detalheVerdeEletrico,
                     ),
+                    Column(
+                      children: [
+                        Text(
+                          timerViewModel.nextPhaseLabel,
+                          style: AppTextStyle.subTitulo,
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          "${nextPhaseMinutes} min",
+                          style: AppTextStyle.titulo,
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          timerViewModel.isBreakTime
+                              ? "Voltando ao foco"
+                              : "Pausa curta",
+                          style: AppTextStyle.subTitulo,
+                        ),
+                      ],
+                    ),
+                    SizedBox(width: 8),
+                    VerticalDivider(
+                      color: AppColors.detalheCinzaAzulado,
+                      thickness: 2,
+                    ),
+                    Spacer(),
+                    Column(
+                      children: [
+                        Text(
+                          "${timerViewModel.currentPhaseLabel}: ",
+                          style: AppTextStyle.subTitulo,
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          "${currentPhaseMinutes.toString().padLeft(2, "0")}:00",
+                          style: TextStyle(
+                            color: AppColors.detalheVerdeEletrico,
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Spacer(),
                   ],
                 ),
-              ],
-            ),
+              );
+            },
           ),
         ),
 
@@ -242,12 +267,12 @@ class _TimerWidgetState extends State<TimerWidget> {
 
         Container(
           padding: EdgeInsets.all(16),
+          width: double.infinity,
           decoration: BoxDecoration(
             color: AppColors.fundoCard,
             borderRadius: BorderRadius.circular(16),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
             children: [
               Text(
                 "Sessão total:",
@@ -256,14 +281,25 @@ class _TimerWidgetState extends State<TimerWidget> {
                   fontSize: 24,
                 ),
               ),
-              SizedBox(width: 16),
-              Text(
-                "1 / 4 Ciclos",
-                style: TextStyle(
-                  color: AppColors.detalheVerdeEletrico,
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+              SizedBox(height: 8),
+              ListenableBuilder(
+                listenable: timerViewModel,
+                builder: (context, child) {
+                  final hasReachedCycleLimit =
+                      timerViewModel.completedCycles >= timerViewModel.maxCycles;
+
+                  return Text(
+                    hasReachedCycleLimit
+                        ? "Sessão concluída"
+                        : "${timerViewModel.completedCycles} / ${timerViewModel.maxCycles} Ciclos",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: AppColors.detalheVerdeEletrico,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                },
               ),
             ],
           ),

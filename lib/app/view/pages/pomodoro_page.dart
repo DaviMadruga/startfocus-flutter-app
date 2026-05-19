@@ -15,7 +15,7 @@ class PomodoroPage extends StatelessWidget {
             children: [
               CabecalhoPomodoro(),
               SizedBox(height: 24),
-              TimerWidget(initialMinutes: 25),
+              TimerWidget(initialMinutes: 1),
             ],
           ),
         ),
