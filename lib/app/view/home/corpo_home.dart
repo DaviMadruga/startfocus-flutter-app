@@ -37,12 +37,17 @@ class CorpoHome extends StatelessWidget {
               descricao: "imersão de escritório",
             ),
           ),
-          CardHome(
-            icon: Icons.psychology_outlined,
-            titulo: "Deep Work",
-            subtitulo: "Mestre do Foco",
-            timer: "90 - 120 min",
-            descricao: "trabalho profundo",
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/deepWork");
+            },
+            child: CardHome(
+              icon: Icons.psychology_outlined,
+              titulo: "Deep Work",
+              subtitulo: "Mestre do Foco",
+              timer: "90 / 30 min",
+              descricao: "trabalho profundo",
+            ),
           ),
           CardHome(
             icon: Icons.flag_outlined,
@@ -58,12 +63,17 @@ class CorpoHome extends StatelessWidget {
             timer: "pausa 20%",
             descricao: "ritmo flexível",
           ),
-          CardHome(
-            icon: Icons.all_inclusive_outlined,
-            titulo: "Livre",
-            subtitulo: "Cronômetro aberto",
-            timer: "sem pausa",
-            descricao: "até pausar",
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/livre");
+            },
+            child: CardHome(
+              icon: Icons.all_inclusive_outlined,
+              titulo: "Livre",
+              subtitulo: "Cronômetro aberto",
+              timer: "sem pausa",
+              descricao: "até pausar",
+            ),
           ),
         ],
       ),

@@ -21,7 +21,7 @@ class ProdutivistaPage extends StatelessWidget {
               TimerWidget(
                 initialMinutes: 52,
                 pausedMinutes: 17,
-                maximumCycles: 3,
+                maximumCycles: 4,
               ),
             ],
           ),
