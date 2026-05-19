@@ -72,15 +72,13 @@ class _TimerWidgetState extends State<TimerWidget> {
               bool isPlaying = timerViewModel.isPlaying;
               return ElevatedButton(
                 onPressed: () {
-                  if (isPlaying) {
-                    timerViewModel.stopTime();
+                  if (timerViewModel.isPlaying) {
+                    timerViewModel.pauseTimer();
+                  } else if (timerViewModel.isPaused) {
+                    timerViewModel.resumeTimer(widget.initialMinutes);
                   } else {
-                    timerViewModel.startTimer(
-                      widget.initialMinutes,
-                      isPausedNotifier,
-                    );
+                    timerViewModel.startTimer(widget.initialMinutes);
                   }
-                  isPausedNotifier.value = false;
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: isPlaying
@@ -99,13 +97,17 @@ class _TimerWidgetState extends State<TimerWidget> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      isPlaying ? Icons.stop : Icons.play_arrow,
+                      timerViewModel.isPlaying ? Icons.pause : Icons.play_arrow,
                       color: AppColors.textoPrincipal,
                       size: 32,
                     ),
                     const SizedBox(width: 10),
                     Text(
-                      isPlaying ? "Parar" : "Iniciar",
+                      timerViewModel.isPlaying
+                          ? "Pausar"
+                          : timerViewModel.isPaused
+                          ? "Continuar"
+                          : "Iniciar",
                       style: AppTextStyle.titulo,
                     ),
                   ],
@@ -125,7 +127,12 @@ class _TimerWidgetState extends State<TimerWidget> {
               builder: (context, child) {
                 bool isPlaying = timerViewModel.isPlaying;
                 return ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    timerViewModel.restarTime(
+                      widget.initialMinutes,
+                      isPausedNotifier,
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppColors.fundoCard,
                     foregroundColor: AppColors.textoPrincipal,
@@ -231,7 +238,7 @@ class _TimerWidgetState extends State<TimerWidget> {
           ),
         ),
 
-        SizedBox(height: 16,),
+        SizedBox(height: 16),
 
         Container(
           padding: EdgeInsets.all(16),
@@ -249,7 +256,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                   fontSize: 24,
                 ),
               ),
-              SizedBox(width: 16,),
+              SizedBox(width: 16),
               Text(
                 "1 / 4 Ciclos",
                 style: TextStyle(
