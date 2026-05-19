@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/pages/home_page.dart';
+import 'package:startfocus/app/view/pages/home_page.dart';
+import 'package:startfocus/app/view/pages/pomodoro_page.dart';
 import 'package:startfocus/app/theme/app_theme.dart';
 
 class App extends StatelessWidget {
@@ -10,7 +11,11 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: "StartFocus",
       theme: AppTheme.appTheme,
-      home: HomePage(),
+      routes: {
+        "/home" : (context) => HomePage(),
+        "/pomodoro" : (context) => PomodoroPage(),
+      },
+      initialRoute: "/home",
     );
   }
 }

@@ -45,7 +45,7 @@ class CabecalhoHome extends StatelessWidget {
         SizedBox(height: 12,),
 
         Text(
-          "Escolha seu nomo de foco",
+          "Escolha seu modo de foco",
           style: AppTextStyle.subTitulo,
         ),
       ],
