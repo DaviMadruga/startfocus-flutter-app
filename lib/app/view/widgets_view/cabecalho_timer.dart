@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:startfocus/app/theme/app_colors.dart';
 import 'package:startfocus/app/theme/app_text_style.dart';
 
-class CabecalhoPomodoro extends StatelessWidget {
-  const CabecalhoPomodoro({super.key});
+class CabecalhoTimer extends StatelessWidget {
+  final String titulo;
+  final String subtitulo;
+
+  const CabecalhoTimer({
+    super.key,
+    required this.titulo,
+    required this.subtitulo,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +55,8 @@ class CabecalhoPomodoro extends StatelessWidget {
           children: [
             Column(
               children: [
-                Text("Nível de Entrada", style: AppTextStyle.titulo),
-                Text("Pomodoro Clássico", style: AppTextStyle.subTitulo),
+                Text(titulo, style: AppTextStyle.titulo),
+                Text(subtitulo, style: AppTextStyle.subTitulo),
               ],
             ),
 

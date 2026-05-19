@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:startfocus/app/view/pages/home_page.dart';
 import 'package:startfocus/app/view/pages/pomodoro_page.dart';
 import 'package:startfocus/app/theme/app_theme.dart';
+import 'package:startfocus/app/view/pages/produtivista_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -14,6 +15,7 @@ class App extends StatelessWidget {
       routes: {
         "/home" : (context) => HomePage(),
         "/pomodoro" : (context) => PomodoroPage(),
+        "/produtivista" : (context) => ProdutivistaPage(),
       },
       initialRoute: "/home",
     );

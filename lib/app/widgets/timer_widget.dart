@@ -5,6 +5,7 @@ import 'package:startfocus/app/view_model/timer_view_model.dart';
 
 class TimerWidget extends StatefulWidget {
   final int initialMinutes;
+  
 
   const TimerWidget({super.key, required this.initialMinutes});
 
@@ -147,7 +148,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.refresh, size: 24),
-                        SizedBox(width: 12),
+                        SizedBox(width: 8),
                         Text("Reiniciar", style: AppTextStyle.titulo),
                       ],
                     ),
@@ -155,7 +156,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                 );
               },
             ),
-            SizedBox(width: 16),
+            SizedBox(width: 8),
             ListenableBuilder(
               listenable: timerViewModel,
               builder: (context, child) {
@@ -177,7 +178,7 @@ class _TimerWidgetState extends State<TimerWidget> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(Icons.skip_next, size: 24),
-                        SizedBox(width: 12),
+                        SizedBox(width: 8),
                         Text("Pular", style: AppTextStyle.titulo),
                       ],
                     ),

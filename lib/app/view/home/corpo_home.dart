@@ -15,10 +15,7 @@ class CorpoHome extends StatelessWidget {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(
-                context,
-                "/pomodoro",
-              );
+              Navigator.pushNamed(context, "/pomodoro");
             },
             child: CardHome(
               icon: Icons.timer_outlined,
@@ -28,12 +25,17 @@ class CorpoHome extends StatelessWidget {
               descricao: "tarefas curtas",
             ),
           ),
-          CardHome(
-            icon: Icons.business_center_outlined,
-            titulo: "Produtivista",
-            subtitulo: "Regra 52 / 17",
-            timer: "52 / 17 min",
-            descricao: "imersão de escritório",
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/produtivista");
+            },
+            child: CardHome(
+              icon: Icons.business_center_outlined,
+              titulo: "Produtivista",
+              subtitulo: "Regra 52 / 17",
+              timer: "52 / 17 min",
+              descricao: "imersão de escritório",
+            ),
           ),
           CardHome(
             icon: Icons.psychology_outlined,
