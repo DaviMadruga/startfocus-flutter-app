@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/view/widgets_view/cabecalho_temporizador.dart';
+import 'package:startfocus/app/widgets/cabecalho_temporizador.dart';
 import 'package:startfocus/app/widgets/cronometro_widget.dart';
 
 class LivrePage extends StatelessWidget {

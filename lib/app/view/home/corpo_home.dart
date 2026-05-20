@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/view/home/card_inicio.dart';
+import 'package:startfocus/app/view/home/card_home.dart';
 
 class CorpoHome extends StatelessWidget {
   const CorpoHome({super.key});
@@ -48,20 +48,6 @@ class CorpoHome extends StatelessWidget {
               tempo: "90 / 30 min",
               descricao: "trabalho profundo",
             ),
-          ),
-          CardHome(
-            icone: Icons.flag_outlined,
-            titulo: "Só Começar",
-            subtitulo: "Apoio Psicológico",
-            tempo: "5 ou 10 min",
-            descricao: "vença a procrastinação",
-          ),
-          CardHome(
-            icone: Icons.hourglass_empty,
-            titulo: "Flow",
-            subtitulo: "Modo Flowtime",
-            tempo: "pausa 20%",
-            descricao: "ritmo flexível",
           ),
           GestureDetector(
             onTap: () {

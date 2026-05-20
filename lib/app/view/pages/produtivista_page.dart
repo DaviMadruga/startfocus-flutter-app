@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/view/widgets_view/cabecalho_temporizador.dart';
+import 'package:startfocus/app/widgets/cabecalho_temporizador.dart';
 import 'package:startfocus/app/widgets/timer_foco_widget.dart';
 
-class DeepWorkPage extends StatelessWidget {
-  const DeepWorkPage({super.key});
+class ProdutivistaPage extends StatelessWidget {
+  const ProdutivistaPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +13,15 @@ class DeepWorkPage extends StatelessWidget {
           padding: EdgeInsetsGeometry.all(16),
           child: Column(
             children: [
-              CabecalhoTimer(titulo: "Deep Work", subtitulo: "Mestre do Foco"),
+              CabecalhoTimer(
+                titulo: "Produtivista", 
+                subtitulo: "Regra 52/17",
+              ),
               SizedBox(height: 16),
               FocusTimerWidget(
-                minutosIniciais: 90,
-                minutosPausa: 30,
-                maximoCiclos: 2,
+                minutosIniciais: 52,
+                minutosPausa: 17,
+                maximoCiclos: 4,
               ),
             ],
           ),

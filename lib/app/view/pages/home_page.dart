@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/view/home/cabecalho_inicio.dart';
-import 'package:startfocus/app/view/home/corpo_inicio.dart';
+import 'package:startfocus/app/view/home/cabecalho_home.dart';
+import 'package:startfocus/app/view/home/corpo_home.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,7 +12,11 @@ class HomePage extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(
-            children: [CabecalhoHome(), SizedBox(height: 16), CorpoHome()],
+            children: [
+              CabecalhoHome(), 
+              SizedBox(height: 16), 
+              CorpoHome()
+            ],
           ),
         ),
       ),
