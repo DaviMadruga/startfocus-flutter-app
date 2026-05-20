@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/view/home/card_home.dart';
+import 'package:startfocus/app/view/home/card_inicio.dart';
 
 class CorpoHome extends StatelessWidget {
   const CorpoHome({super.key});
@@ -18,10 +18,10 @@ class CorpoHome extends StatelessWidget {
               Navigator.pushNamed(context, "/pomodoro");
             },
             child: CardHome(
-              icon: Icons.timer_outlined,
+              icone: Icons.timer_outlined,
               titulo: "Iniciante",
               subtitulo: "Pomodoro Clássico",
-              timer: "25 / 5 min",
+              tempo: "25 / 5 min",
               descricao: "tarefas curtas",
             ),
           ),
@@ -30,10 +30,10 @@ class CorpoHome extends StatelessWidget {
               Navigator.pushNamed(context, "/produtivista");
             },
             child: CardHome(
-              icon: Icons.business_center_outlined,
+              icone: Icons.business_center_outlined,
               titulo: "Produtivista",
               subtitulo: "Regra 52 / 17",
-              timer: "52 / 17 min",
+              tempo: "52 / 17 min",
               descricao: "imersão de escritório",
             ),
           ),
@@ -42,25 +42,25 @@ class CorpoHome extends StatelessWidget {
               Navigator.pushNamed(context, "/deepWork");
             },
             child: CardHome(
-              icon: Icons.psychology_outlined,
+              icone: Icons.psychology_outlined,
               titulo: "Deep Work",
               subtitulo: "Mestre do Foco",
-              timer: "90 / 30 min",
+              tempo: "90 / 30 min",
               descricao: "trabalho profundo",
             ),
           ),
           CardHome(
-            icon: Icons.flag_outlined,
+            icone: Icons.flag_outlined,
             titulo: "Só Começar",
             subtitulo: "Apoio Psicológico",
-            timer: "5 ou 10 min",
+            tempo: "5 ou 10 min",
             descricao: "vença a procrastinação",
           ),
           CardHome(
-            icon: Icons.hourglass_empty,
+            icone: Icons.hourglass_empty,
             titulo: "Flow",
             subtitulo: "Modo Flowtime",
-            timer: "pausa 20%",
+            tempo: "pausa 20%",
             descricao: "ritmo flexível",
           ),
           GestureDetector(
@@ -68,10 +68,10 @@ class CorpoHome extends StatelessWidget {
               Navigator.pushNamed(context, "/livre");
             },
             child: CardHome(
-              icon: Icons.all_inclusive_outlined,
+              icone: Icons.all_inclusive_outlined,
               titulo: "Livre",
               subtitulo: "Cronômetro aberto",
-              timer: "sem pausa",
+              tempo: "sem pausa",
               descricao: "até pausar",
             ),
           ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/theme/app_colors.dart';
+import 'package:startfocus/app/theme/cores_app.dart';
 
 class AppTheme {
-  static ThemeData appTheme = ThemeData(
+  static ThemeData temaAplicacao = ThemeData(
     useMaterial3: true,
     scaffoldBackgroundColor: AppColors.fundoPrincipal,
     fontFamily: "Inter",

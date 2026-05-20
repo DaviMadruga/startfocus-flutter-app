@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/theme/app_colors.dart';
-import 'package:startfocus/app/theme/app_text_style.dart';
+import 'package:startfocus/app/theme/cores_app.dart';
+import 'package:startfocus/app/theme/estilo_texto_app.dart';
 
 class CabecalhoHome extends StatelessWidget {
   const CabecalhoHome({super.key});
@@ -15,39 +15,36 @@ class CabecalhoHome extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(8),
               child: Image.asset(
-                "assets/images/logo.png", 
-                height: 100, 
-                width: 100
+                "assets/images/logo.png",
+                height: 100,
+                width: 100,
               ),
             ),
 
-            SizedBox(width: 8,),
+            SizedBox(width: 8),
 
             Text(
-              "Star", 
+              "Star",
               style: TextStyle(
                 color: AppColors.textoPrincipal,
                 fontSize: 32,
                 fontWeight: FontWeight.w600,
-              )
+              ),
             ),
             Text(
-              "Focus", 
+              "Focus",
               style: TextStyle(
                 color: AppColors.detalheVerdeEletrico,
                 fontSize: 32,
                 fontWeight: FontWeight.w600,
-              )
+              ),
             ),
           ],
         ),
 
-        SizedBox(height: 12,),
+        SizedBox(height: 12),
 
-        Text(
-          "Escolha seu modo de foco",
-          style: AppTextStyle.subTitulo,
-        ),
+        Text("Escolha seu modo de foco", style: AppTextStyle.subTitulo),
       ],
     );
   }
