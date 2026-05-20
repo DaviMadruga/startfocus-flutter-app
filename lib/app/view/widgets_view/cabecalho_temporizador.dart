@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/theme/app_colors.dart';
-import 'package:startfocus/app/theme/app_text_style.dart';
+import 'package:startfocus/app/theme/cores_app.dart';
+import 'package:startfocus/app/theme/estilo_texto_app.dart';
 
 class CabecalhoTimer extends StatelessWidget {
   final String titulo;
@@ -61,7 +61,7 @@ class CabecalhoTimer extends StatelessWidget {
             ),
 
             Spacer(),
-            
+
             GestureDetector(
               onTap: () {
                 Navigator.pop(context);

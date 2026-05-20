@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/theme/app_colors.dart';
+import 'package:startfocus/app/theme/cores_app.dart';
 
 class AppTextStyle {
   static const TextStyle titulo = TextStyle(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/view/widgets_view/cabecalho_timer.dart';
-import 'package:startfocus/app/widgets/timer_widget.dart';
+import 'package:startfocus/app/view/widgets_view/cabecalho_temporizador.dart';
+import 'package:startfocus/app/widgets/timer_foco_widget.dart';
 
 class ProdutivistaPage extends StatelessWidget {
   const ProdutivistaPage({super.key});
@@ -13,15 +13,12 @@ class ProdutivistaPage extends StatelessWidget {
           padding: EdgeInsetsGeometry.all(16),
           child: Column(
             children: [
-              CabecalhoTimer(
-                titulo: "Produtivista",
-                subtitulo: "Regra 52/17",
-              ),
+              CabecalhoTimer(titulo: "Produtivista", subtitulo: "Regra 52/17"),
               SizedBox(height: 16),
-              TimerWidget(
-                initialMinutes: 52,
-                pausedMinutes: 17,
-                maximumCycles: 4,
+              FocusTimerWidget(
+                minutosIniciais: 52,
+                minutosPausa: 17,
+                maximoCiclos: 4,
               ),
             ],
           ),

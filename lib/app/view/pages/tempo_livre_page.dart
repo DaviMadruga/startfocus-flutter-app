@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:startfocus/app/view/widgets_view/cabecalho_timer.dart';
+import 'package:startfocus/app/view/widgets_view/cabecalho_temporizador.dart';
+import 'package:startfocus/app/widgets/cronometro_widget.dart';
 
 class LivrePage extends StatelessWidget {
   const LivrePage({super.key});
@@ -13,11 +14,11 @@ class LivrePage extends StatelessWidget {
           child: Column(
             children: [
               CabecalhoTimer(
-                titulo: "Livre", 
-                subtitulo: "Cronômetro aberto",
+                titulo: "Tempo Livre",
+                subtitulo: "Cronômetro sem ciclos",
               ),
-              SizedBox(height: 16,),
-              
+              SizedBox(height: 16),
+              StopwatchWidget(),
             ],
           ),
         ),
